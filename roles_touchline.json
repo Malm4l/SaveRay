@@ -1,0 +1,1437 @@
+{
+  "roles": [
+    {
+      "name": "Ball-Playing Goalkeeper",
+      "phase": "in",
+      "position_groups": [
+        "Goalkeeper"
+      ],
+      "priority": [
+        "Passing",
+        "First Touch",
+        "Decisions",
+        "Composure"
+      ],
+      "supporting": [
+        "Kicking",
+        "Vision",
+        "Technique"
+      ]
+    },
+    {
+      "name": "Goalkeeper",
+      "phase": "in",
+      "position_groups": [
+        "Goalkeeper"
+      ],
+      "priority": [
+        "Decisions",
+        "Kicking",
+        "Throwing",
+        "First Touch"
+      ],
+      "supporting": [
+        "Passing",
+        "Composure",
+        "Technique"
+      ]
+    },
+    {
+      "name": "No-Nonsense Goalkeeper",
+      "phase": "in",
+      "position_groups": [
+        "Goalkeeper"
+      ],
+      "priority": [
+        "Kicking",
+        "Decisions",
+        "Concentration"
+      ],
+      "supporting": [
+        "Throwing",
+        "Handling",
+        "Composure"
+      ]
+    },
+    {
+      "name": "Goalkeeper",
+      "phase": "out",
+      "position_groups": [
+        "Goalkeeper"
+      ],
+      "priority": [
+        "Reflexes",
+        "Positioning",
+        "Handling",
+        "Decisions"
+      ],
+      "supporting": [
+        "Aerial Reach",
+        "One on Ones",
+        "Communication"
+      ]
+    },
+    {
+      "name": "Line-Holding Goalkeeper",
+      "phase": "out",
+      "position_groups": [
+        "Goalkeeper"
+      ],
+      "priority": [
+        "Reflexes",
+        "Positioning",
+        "Handling",
+        "Concentration"
+      ],
+      "supporting": [
+        "One on Ones",
+        "Aerial Reach",
+        "Communication"
+      ]
+    },
+    {
+      "name": "Sweeper Keeper",
+      "phase": "out",
+      "position_groups": [
+        "Goalkeeper"
+      ],
+      "priority": [
+        "Rushing Out",
+        "Anticipation",
+        "Decisions",
+        "Acceleration"
+      ],
+      "supporting": [
+        "One on Ones",
+        "Composure",
+        "Concentration"
+      ]
+    },
+    {
+      "name": "Advanced Centre-Back",
+      "phase": "in",
+      "position_groups": [
+        "Centre-back",
+        "Wide centre-back"
+      ],
+      "priority": [
+        "Dribbling",
+        "Passing",
+        "Decisions",
+        "First Touch"
+      ],
+      "supporting": [
+        "Composure",
+        "Off the Ball",
+        "Anticipation"
+      ]
+    },
+    {
+      "name": "Ball-Playing Centre-Back",
+      "phase": "in",
+      "position_groups": [
+        "Centre-back",
+        "Wide centre-back"
+      ],
+      "priority": [
+        "Passing",
+        "Vision",
+        "Decisions",
+        "Composure"
+      ],
+      "supporting": [
+        "First Touch",
+        "Technique",
+        "Anticipation"
+      ]
+    },
+    {
+      "name": "Centre-Back",
+      "phase": "in",
+      "position_groups": [
+        "Centre-back",
+        "Wide centre-back"
+      ],
+      "priority": [
+        "Passing",
+        "First Touch",
+        "Decisions"
+      ],
+      "supporting": [
+        "Composure",
+        "Technique",
+        "Teamwork"
+      ]
+    },
+    {
+      "name": "No-Nonsense Centre-Back",
+      "phase": "in",
+      "position_groups": [
+        "Centre-back",
+        "Wide centre-back"
+      ],
+      "priority": [
+        "Decisions",
+        "Heading",
+        "Strength",
+        "Concentration"
+      ],
+      "supporting": [
+        "Positioning",
+        "Teamwork",
+        "Passing"
+      ]
+    },
+    {
+      "name": "Centre-Back",
+      "phase": "out",
+      "position_groups": [
+        "Centre-back"
+      ],
+      "priority": [
+        "Positioning",
+        "Marking",
+        "Tackling",
+        "Heading"
+      ],
+      "supporting": [
+        "Anticipation",
+        "Concentration",
+        "Strength"
+      ]
+    },
+    {
+      "name": "Covering Centre-Back",
+      "phase": "out",
+      "position_groups": [
+        "Centre-back"
+      ],
+      "priority": [
+        "Anticipation",
+        "Positioning",
+        "Pace",
+        "Concentration"
+      ],
+      "supporting": [
+        "Marking",
+        "Decisions",
+        "Tackling"
+      ]
+    },
+    {
+      "name": "Stopping Centre-Back",
+      "phase": "out",
+      "position_groups": [
+        "Centre-back"
+      ],
+      "priority": [
+        "Anticipation",
+        "Tackling",
+        "Decisions",
+        "Strength"
+      ],
+      "supporting": [
+        "Marking",
+        "Aggression",
+        "Heading"
+      ]
+    },
+    {
+      "name": "Overlapping Centre-Back",
+      "phase": "in",
+      "position_groups": [
+        "Wide centre-back"
+      ],
+      "priority": [
+        "Off the Ball",
+        "Stamina",
+        "Passing",
+        "Decisions"
+      ],
+      "supporting": [
+        "Crossing",
+        "Dribbling",
+        "Work Rate"
+      ]
+    },
+    {
+      "name": "Wide Centre-Back",
+      "phase": "in",
+      "position_groups": [
+        "Wide centre-back"
+      ],
+      "priority": [
+        "Passing",
+        "First Touch",
+        "Decisions",
+        "Teamwork"
+      ],
+      "supporting": [
+        "Composure",
+        "Dribbling",
+        "Stamina"
+      ]
+    },
+    {
+      "name": "Covering Wide Centre-Back",
+      "phase": "out",
+      "position_groups": [
+        "Wide centre-back"
+      ],
+      "priority": [
+        "Anticipation",
+        "Positioning",
+        "Pace",
+        "Decisions"
+      ],
+      "supporting": [
+        "Marking",
+        "Concentration",
+        "Tackling"
+      ]
+    },
+    {
+      "name": "Stopping Wide Centre-Back",
+      "phase": "out",
+      "position_groups": [
+        "Wide centre-back"
+      ],
+      "priority": [
+        "Anticipation",
+        "Tackling",
+        "Decisions",
+        "Acceleration"
+      ],
+      "supporting": [
+        "Strength",
+        "Marking",
+        "Work Rate"
+      ]
+    },
+    {
+      "name": "Wide Centre-Back",
+      "phase": "out",
+      "position_groups": [
+        "Wide centre-back"
+      ],
+      "priority": [
+        "Positioning",
+        "Anticipation",
+        "Marking",
+        "Pace"
+      ],
+      "supporting": [
+        "Tackling",
+        "Concentration",
+        "Strength"
+      ]
+    },
+    {
+      "name": "Full-Back",
+      "phase": "in",
+      "position_groups": [
+        "Full-back"
+      ],
+      "priority": [
+        "Passing",
+        "Decisions",
+        "Off the Ball",
+        "Crossing"
+      ],
+      "supporting": [
+        "Stamina",
+        "First Touch",
+        "Teamwork"
+      ]
+    },
+    {
+      "name": "Inside Full-Back",
+      "phase": "in",
+      "position_groups": [
+        "Full-back"
+      ],
+      "priority": [
+        "Decisions",
+        "Passing",
+        "First Touch",
+        "Teamwork"
+      ],
+      "supporting": [
+        "Composure",
+        "Anticipation",
+        "Technique"
+      ]
+    },
+    {
+      "name": "Inside Wing-Back",
+      "phase": "in",
+      "position_groups": [
+        "Full-back",
+        "Wing-back"
+      ],
+      "priority": [
+        "First Touch",
+        "Passing",
+        "Decisions",
+        "Off the Ball"
+      ],
+      "supporting": [
+        "Composure",
+        "Technique",
+        "Teamwork"
+      ]
+    },
+    {
+      "name": "Playmaking Wing-Back",
+      "phase": "in",
+      "position_groups": [
+        "Full-back",
+        "Wing-back"
+      ],
+      "priority": [
+        "Passing",
+        "Vision",
+        "Technique",
+        "Decisions"
+      ],
+      "supporting": [
+        "First Touch",
+        "Composure",
+        "Crossing"
+      ]
+    },
+    {
+      "name": "Wing-Back",
+      "phase": "in",
+      "position_groups": [
+        "Full-back",
+        "Wing-back"
+      ],
+      "priority": [
+        "Stamina",
+        "Crossing",
+        "Off the Ball",
+        "Work Rate"
+      ],
+      "supporting": [
+        "Acceleration",
+        "Dribbling",
+        "Decisions"
+      ]
+    },
+    {
+      "name": "Full-Back",
+      "phase": "out",
+      "position_groups": [
+        "Full-back"
+      ],
+      "priority": [
+        "Positioning",
+        "Marking",
+        "Tackling",
+        "Anticipation"
+      ],
+      "supporting": [
+        "Pace",
+        "Concentration",
+        "Teamwork"
+      ]
+    },
+    {
+      "name": "Holding Full-Back",
+      "phase": "out",
+      "position_groups": [
+        "Full-back"
+      ],
+      "priority": [
+        "Positioning",
+        "Marking",
+        "Concentration",
+        "Tackling"
+      ],
+      "supporting": [
+        "Anticipation",
+        "Decisions",
+        "Pace"
+      ]
+    },
+    {
+      "name": "Pressing Full-Back",
+      "phase": "out",
+      "position_groups": [
+        "Full-back"
+      ],
+      "priority": [
+        "Work Rate",
+        "Anticipation",
+        "Acceleration",
+        "Decisions"
+      ],
+      "supporting": [
+        "Stamina",
+        "Tackling",
+        "Teamwork"
+      ]
+    },
+    {
+      "name": "Advanced Wing-Back",
+      "phase": "in",
+      "position_groups": [
+        "Wing-back"
+      ],
+      "priority": [
+        "Stamina",
+        "Off the Ball",
+        "Crossing",
+        "Acceleration"
+      ],
+      "supporting": [
+        "Dribbling",
+        "Work Rate",
+        "Decisions"
+      ]
+    },
+    {
+      "name": "Holding Wing-Back",
+      "phase": "out",
+      "position_groups": [
+        "Wing-back"
+      ],
+      "priority": [
+        "Positioning",
+        "Anticipation",
+        "Marking",
+        "Concentration"
+      ],
+      "supporting": [
+        "Tackling",
+        "Decisions",
+        "Pace"
+      ]
+    },
+    {
+      "name": "Pressing Wing-Back",
+      "phase": "out",
+      "position_groups": [
+        "Wing-back"
+      ],
+      "priority": [
+        "Work Rate",
+        "Acceleration",
+        "Anticipation",
+        "Stamina"
+      ],
+      "supporting": [
+        "Tackling",
+        "Decisions",
+        "Teamwork"
+      ]
+    },
+    {
+      "name": "Wing-Back",
+      "phase": "out",
+      "position_groups": [
+        "Wing-back"
+      ],
+      "priority": [
+        "Positioning",
+        "Stamina",
+        "Marking",
+        "Tackling"
+      ],
+      "supporting": [
+        "Work Rate",
+        "Anticipation",
+        "Pace"
+      ]
+    },
+    {
+      "name": "Box-To-Box Midfielder",
+      "phase": "in",
+      "position_groups": [
+        "Defensive midfield"
+      ],
+      "priority": [
+        "Stamina",
+        "Off the Ball",
+        "Work Rate",
+        "First Touch"
+      ],
+      "supporting": [
+        "Passing",
+        "Anticipation",
+        "Finishing"
+      ]
+    },
+    {
+      "name": "Box-To-Box Playmaker",
+      "phase": "in",
+      "position_groups": [
+        "Defensive midfield"
+      ],
+      "priority": [
+        "Passing",
+        "Vision",
+        "Stamina",
+        "Decisions"
+      ],
+      "supporting": [
+        "First Touch",
+        "Technique",
+        "Off the Ball"
+      ]
+    },
+    {
+      "name": "Deep-Lying Playmaker",
+      "phase": "in",
+      "position_groups": [
+        "Defensive midfield"
+      ],
+      "priority": [
+        "Passing",
+        "Vision",
+        "First Touch",
+        "Decisions"
+      ],
+      "supporting": [
+        "Composure",
+        "Technique",
+        "Teamwork"
+      ]
+    },
+    {
+      "name": "Defensive Midfielder",
+      "phase": "in",
+      "position_groups": [
+        "Defensive midfield"
+      ],
+      "priority": [
+        "Passing",
+        "First Touch",
+        "Decisions",
+        "Teamwork"
+      ],
+      "supporting": [
+        "Composure",
+        "Technique",
+        "Vision"
+      ]
+    },
+    {
+      "name": "Half Back",
+      "phase": "in",
+      "position_groups": [
+        "Defensive midfield"
+      ],
+      "priority": [
+        "Decisions",
+        "Passing",
+        "First Touch",
+        "Teamwork"
+      ],
+      "supporting": [
+        "Composure",
+        "Anticipation",
+        "Technique"
+      ]
+    },
+    {
+      "name": "Defensive Midfielder",
+      "phase": "out",
+      "position_groups": [
+        "Defensive midfield"
+      ],
+      "priority": [
+        "Positioning",
+        "Anticipation",
+        "Tackling",
+        "Decisions"
+      ],
+      "supporting": [
+        "Marking",
+        "Concentration",
+        "Teamwork"
+      ]
+    },
+    {
+      "name": "Dropping Defensive Midfielder",
+      "phase": "out",
+      "position_groups": [
+        "Defensive midfield"
+      ],
+      "priority": [
+        "Positioning",
+        "Anticipation",
+        "Marking",
+        "Concentration"
+      ],
+      "supporting": [
+        "Heading",
+        "Tackling",
+        "Teamwork"
+      ]
+    },
+    {
+      "name": "Pressing Defensive Midfielder",
+      "phase": "out",
+      "position_groups": [
+        "Defensive midfield"
+      ],
+      "priority": [
+        "Work Rate",
+        "Anticipation",
+        "Stamina",
+        "Decisions"
+      ],
+      "supporting": [
+        "Tackling",
+        "Aggression",
+        "Teamwork"
+      ]
+    },
+    {
+      "name": "Screening Defensive Midfielder",
+      "phase": "out",
+      "position_groups": [
+        "Defensive midfield"
+      ],
+      "priority": [
+        "Positioning",
+        "Anticipation",
+        "Concentration",
+        "Teamwork"
+      ],
+      "supporting": [
+        "Marking",
+        "Decisions",
+        "Tackling"
+      ]
+    },
+    {
+      "name": "Wide Covering Defensive Midfielder",
+      "phase": "out",
+      "position_groups": [
+        "Defensive midfield"
+      ],
+      "priority": [
+        "Positioning",
+        "Anticipation",
+        "Stamina",
+        "Teamwork"
+      ],
+      "supporting": [
+        "Work Rate",
+        "Tackling",
+        "Acceleration"
+      ]
+    },
+    {
+      "name": "Central Midfielder",
+      "phase": "in",
+      "position_groups": [
+        "Central midfield"
+      ],
+      "priority": [
+        "Passing",
+        "First Touch",
+        "Decisions",
+        "Off the Ball"
+      ],
+      "supporting": [
+        "Teamwork",
+        "Technique",
+        "Composure"
+      ]
+    },
+    {
+      "name": "Channel Midfielder",
+      "phase": "in",
+      "position_groups": [
+        "Central midfield",
+        "Attacking midfield"
+      ],
+      "priority": [
+        "Off the Ball",
+        "Stamina",
+        "Acceleration",
+        "Passing"
+      ],
+      "supporting": [
+        "First Touch",
+        "Anticipation",
+        "Crossing"
+      ]
+    },
+    {
+      "name": "Midfield Playmaker",
+      "phase": "in",
+      "position_groups": [
+        "Central midfield"
+      ],
+      "priority": [
+        "Passing",
+        "Vision",
+        "First Touch",
+        "Decisions"
+      ],
+      "supporting": [
+        "Technique",
+        "Composure",
+        "Teamwork"
+      ]
+    },
+    {
+      "name": "Wide Central Midfielder",
+      "phase": "in",
+      "position_groups": [
+        "Central midfield"
+      ],
+      "priority": [
+        "Off the Ball",
+        "Passing",
+        "Decisions",
+        "Stamina"
+      ],
+      "supporting": [
+        "First Touch",
+        "Technique",
+        "Work Rate"
+      ]
+    },
+    {
+      "name": "Central Midfielder",
+      "phase": "out",
+      "position_groups": [
+        "Central midfield"
+      ],
+      "priority": [
+        "Positioning",
+        "Anticipation",
+        "Teamwork",
+        "Tackling"
+      ],
+      "supporting": [
+        "Work Rate",
+        "Concentration",
+        "Marking"
+      ]
+    },
+    {
+      "name": "Pressing Central Midfielder",
+      "phase": "out",
+      "position_groups": [
+        "Central midfield"
+      ],
+      "priority": [
+        "Work Rate",
+        "Anticipation",
+        "Acceleration",
+        "Stamina"
+      ],
+      "supporting": [
+        "Tackling",
+        "Decisions",
+        "Teamwork"
+      ]
+    },
+    {
+      "name": "Screening Central Midfielder",
+      "phase": "out",
+      "position_groups": [
+        "Central midfield"
+      ],
+      "priority": [
+        "Positioning",
+        "Anticipation",
+        "Concentration",
+        "Teamwork"
+      ],
+      "supporting": [
+        "Marking",
+        "Decisions",
+        "Tackling"
+      ]
+    },
+    {
+      "name": "Wide Covering Central Midfielder",
+      "phase": "out",
+      "position_groups": [
+        "Central midfield"
+      ],
+      "priority": [
+        "Positioning",
+        "Teamwork",
+        "Stamina",
+        "Anticipation"
+      ],
+      "supporting": [
+        "Work Rate",
+        "Marking",
+        "Tackling"
+      ]
+    },
+    {
+      "name": "Wide Midfielder",
+      "phase": "in",
+      "position_groups": [
+        "Wide midfield"
+      ],
+      "priority": [
+        "Crossing",
+        "Passing",
+        "Decisions",
+        "First Touch"
+      ],
+      "supporting": [
+        "Teamwork",
+        "Off the Ball",
+        "Technique"
+      ]
+    },
+    {
+      "name": "Tracking Wide Midfielder",
+      "phase": "out",
+      "position_groups": [
+        "Wide midfield"
+      ],
+      "priority": [
+        "Work Rate",
+        "Stamina",
+        "Marking",
+        "Positioning"
+      ],
+      "supporting": [
+        "Teamwork",
+        "Anticipation",
+        "Acceleration"
+      ]
+    },
+    {
+      "name": "Wide Midfielder",
+      "phase": "out",
+      "position_groups": [
+        "Wide midfield"
+      ],
+      "priority": [
+        "Positioning",
+        "Marking",
+        "Work Rate",
+        "Teamwork"
+      ],
+      "supporting": [
+        "Stamina",
+        "Anticipation",
+        "Tackling"
+      ]
+    },
+    {
+      "name": "Wide Outlet Wide Midfielder",
+      "phase": "out",
+      "position_groups": [
+        "Wide midfield"
+      ],
+      "priority": [
+        "Off the Ball",
+        "First Touch",
+        "Acceleration",
+        "Decisions"
+      ],
+      "supporting": [
+        "Pace",
+        "Passing",
+        "Composure"
+      ]
+    },
+    {
+      "name": "Advanced Playmaker",
+      "phase": "in",
+      "position_groups": [
+        "Attacking midfield",
+        "Central midfield"
+      ],
+      "priority": [
+        "Vision",
+        "Passing",
+        "First Touch",
+        "Off the Ball"
+      ],
+      "supporting": [
+        "Technique",
+        "Composure",
+        "Decisions"
+      ]
+    },
+    {
+      "name": "Attacking Midfielder",
+      "phase": "in",
+      "position_groups": [
+        "Attacking midfield",
+        "Central midfield"
+      ],
+      "priority": [
+        "Off the Ball",
+        "First Touch",
+        "Decisions",
+        "Passing"
+      ],
+      "supporting": [
+        "Technique",
+        "Anticipation",
+        "Finishing"
+      ]
+    },
+    {
+      "name": "Free Role",
+      "phase": "in",
+      "position_groups": [
+        "Attacking midfield"
+      ],
+      "priority": [
+        "Off the Ball",
+        "Vision",
+        "Decisions",
+        "Technique"
+      ],
+      "supporting": [
+        "Dribbling",
+        "Passing",
+        "Flair"
+      ]
+    },
+    {
+      "name": "Second Striker",
+      "phase": "in",
+      "position_groups": [
+        "Attacking midfield"
+      ],
+      "priority": [
+        "Off the Ball",
+        "Anticipation",
+        "Finishing",
+        "Composure"
+      ],
+      "supporting": [
+        "Acceleration",
+        "First Touch",
+        "Decisions"
+      ]
+    },
+    {
+      "name": "Attacking Midfielder",
+      "phase": "out",
+      "position_groups": [
+        "Attacking midfield"
+      ],
+      "priority": [
+        "Positioning",
+        "Anticipation",
+        "Teamwork",
+        "Work Rate"
+      ],
+      "supporting": [
+        "Marking",
+        "Decisions",
+        "Stamina"
+      ]
+    },
+    {
+      "name": "Central Outlet Attacking Midfielder",
+      "phase": "out",
+      "position_groups": [
+        "Attacking midfield"
+      ],
+      "priority": [
+        "Off the Ball",
+        "First Touch",
+        "Composure",
+        "Passing"
+      ],
+      "supporting": [
+        "Vision",
+        "Balance",
+        "Decisions"
+      ]
+    },
+    {
+      "name": "Splitting Outlet Attacking Midfielder",
+      "phase": "out",
+      "position_groups": [
+        "Attacking midfield"
+      ],
+      "priority": [
+        "Off the Ball",
+        "Anticipation",
+        "Acceleration",
+        "First Touch"
+      ],
+      "supporting": [
+        "Pace",
+        "Composure",
+        "Finishing"
+      ]
+    },
+    {
+      "name": "Tracking Attacking Midfielder",
+      "phase": "out",
+      "position_groups": [
+        "Attacking midfield"
+      ],
+      "priority": [
+        "Work Rate",
+        "Stamina",
+        "Teamwork",
+        "Positioning"
+      ],
+      "supporting": [
+        "Marking",
+        "Anticipation",
+        "Decisions"
+      ]
+    },
+    {
+      "name": "Inside Forward",
+      "phase": "in",
+      "position_groups": [
+        "Wide attack"
+      ],
+      "priority": [
+        "Off the Ball",
+        "Finishing",
+        "Dribbling",
+        "Composure"
+      ],
+      "supporting": [
+        "Acceleration",
+        "Anticipation",
+        "Technique"
+      ]
+    },
+    {
+      "name": "Inside Winger",
+      "phase": "in",
+      "position_groups": [
+        "Wide attack",
+        "Wide midfield"
+      ],
+      "priority": [
+        "Dribbling",
+        "Passing",
+        "First Touch",
+        "Decisions"
+      ],
+      "supporting": [
+        "Technique",
+        "Vision",
+        "Off the Ball"
+      ]
+    },
+    {
+      "name": "Playmaking Winger",
+      "phase": "in",
+      "position_groups": [
+        "Wide attack",
+        "Wide midfield"
+      ],
+      "priority": [
+        "Passing",
+        "Vision",
+        "First Touch",
+        "Decisions"
+      ],
+      "supporting": [
+        "Technique",
+        "Composure",
+        "Off the Ball"
+      ]
+    },
+    {
+      "name": "Wide Forward",
+      "phase": "in",
+      "position_groups": [
+        "Wide attack"
+      ],
+      "priority": [
+        "Off the Ball",
+        "Acceleration",
+        "Finishing",
+        "Anticipation"
+      ],
+      "supporting": [
+        "Pace",
+        "Dribbling",
+        "Composure"
+      ]
+    },
+    {
+      "name": "Winger",
+      "phase": "in",
+      "position_groups": [
+        "Wide attack",
+        "Wide midfield"
+      ],
+      "priority": [
+        "Dribbling",
+        "Acceleration",
+        "Crossing",
+        "Off the Ball"
+      ],
+      "supporting": [
+        "Technique",
+        "Pace",
+        "Decisions"
+      ]
+    },
+    {
+      "name": "Inside Outlet Winger",
+      "phase": "out",
+      "position_groups": [
+        "Wide attack"
+      ],
+      "priority": [
+        "Off the Ball",
+        "Anticipation",
+        "Acceleration",
+        "Finishing"
+      ],
+      "supporting": [
+        "First Touch",
+        "Pace",
+        "Composure"
+      ]
+    },
+    {
+      "name": "Tracking Winger",
+      "phase": "out",
+      "position_groups": [
+        "Wide attack"
+      ],
+      "priority": [
+        "Work Rate",
+        "Stamina",
+        "Marking",
+        "Teamwork"
+      ],
+      "supporting": [
+        "Acceleration",
+        "Positioning",
+        "Anticipation"
+      ]
+    },
+    {
+      "name": "Wide Outlet Winger",
+      "phase": "out",
+      "position_groups": [
+        "Wide attack"
+      ],
+      "priority": [
+        "Off the Ball",
+        "Acceleration",
+        "First Touch",
+        "Pace"
+      ],
+      "supporting": [
+        "Dribbling",
+        "Decisions",
+        "Composure"
+      ]
+    },
+    {
+      "name": "Winger",
+      "phase": "out",
+      "position_groups": [
+        "Wide attack"
+      ],
+      "priority": [
+        "Work Rate",
+        "Positioning",
+        "Teamwork",
+        "Anticipation"
+      ],
+      "supporting": [
+        "Stamina",
+        "Marking",
+        "Acceleration"
+      ]
+    },
+    {
+      "name": "Centre Forward",
+      "phase": "in",
+      "position_groups": [
+        "Striker"
+      ],
+      "priority": [
+        "Off the Ball",
+        "First Touch",
+        "Finishing",
+        "Decisions"
+      ],
+      "supporting": [
+        "Composure",
+        "Strength",
+        "Anticipation"
+      ]
+    },
+    {
+      "name": "Channel Forward",
+      "phase": "in",
+      "position_groups": [
+        "Striker"
+      ],
+      "priority": [
+        "Off the Ball",
+        "Anticipation",
+        "Acceleration",
+        "Finishing"
+      ],
+      "supporting": [
+        "Pace",
+        "Composure",
+        "First Touch"
+      ]
+    },
+    {
+      "name": "Deep-Lying Forward",
+      "phase": "in",
+      "position_groups": [
+        "Striker"
+      ],
+      "priority": [
+        "First Touch",
+        "Passing",
+        "Strength",
+        "Decisions"
+      ],
+      "supporting": [
+        "Teamwork",
+        "Vision",
+        "Composure"
+      ]
+    },
+    {
+      "name": "False Nine",
+      "phase": "in",
+      "position_groups": [
+        "Striker"
+      ],
+      "priority": [
+        "Off the Ball",
+        "First Touch",
+        "Passing",
+        "Vision"
+      ],
+      "supporting": [
+        "Dribbling",
+        "Decisions",
+        "Technique"
+      ]
+    },
+    {
+      "name": "Poacher",
+      "phase": "in",
+      "position_groups": [
+        "Striker"
+      ],
+      "priority": [
+        "Off the Ball",
+        "Anticipation",
+        "Finishing",
+        "Composure"
+      ],
+      "supporting": [
+        "Acceleration",
+        "First Touch",
+        "Pace"
+      ]
+    },
+    {
+      "name": "Target Forward",
+      "phase": "in",
+      "position_groups": [
+        "Striker"
+      ],
+      "priority": [
+        "Jumping Reach",
+        "Heading",
+        "Strength",
+        "First Touch"
+      ],
+      "supporting": [
+        "Balance",
+        "Teamwork",
+        "Bravery"
+      ]
+    },
+    {
+      "name": "Central Outlet Centre Forward",
+      "phase": "out",
+      "position_groups": [
+        "Striker"
+      ],
+      "priority": [
+        "First Touch",
+        "Strength",
+        "Off the Ball",
+        "Balance"
+      ],
+      "supporting": [
+        "Heading",
+        "Composure",
+        "Teamwork"
+      ]
+    },
+    {
+      "name": "Centre Forward",
+      "phase": "out",
+      "position_groups": [
+        "Striker"
+      ],
+      "priority": [
+        "Work Rate",
+        "Anticipation",
+        "Stamina",
+        "Teamwork"
+      ],
+      "supporting": [
+        "Acceleration",
+        "Decisions",
+        "Aggression"
+      ]
+    },
+    {
+      "name": "Splitting Outlet Centre Forward",
+      "phase": "out",
+      "position_groups": [
+        "Striker"
+      ],
+      "priority": [
+        "Off the Ball",
+        "Acceleration",
+        "Anticipation",
+        "Pace"
+      ],
+      "supporting": [
+        "Finishing",
+        "First Touch",
+        "Composure"
+      ]
+    },
+    {
+      "name": "Tracking Centre Forward",
+      "phase": "out",
+      "position_groups": [
+        "Striker"
+      ],
+      "priority": [
+        "Work Rate",
+        "Stamina",
+        "Teamwork",
+        "Marking"
+      ],
+      "supporting": [
+        "Positioning",
+        "Anticipation",
+        "Decisions"
+      ]
+    }
+  ]
+}

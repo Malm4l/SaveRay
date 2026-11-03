@@ -1,0 +1,19 @@
+# SaveRay local data - never commit your saves or snapshots
+*.fm
+*.db
+snapshots/
+players.db
+active_snapshot.txt
+
+# Python environment and caches
+.venv/
+__pycache__/
+*.pyc
+
+# Streamlit runtime logs
+streamlit.log
+streamlit.err
+
+# OS leftovers
+Thumbs.db
+Desktop.ini
