@@ -32,11 +32,34 @@ Everything runs locally. Your save never leaves your machine.
 
 ## Screenshots
 
-Screenshots live in the `docs` folder. Drop your own captures there
-using the same file names to replace these placeholders.
+The player table with the save manager and filters in the sidebar.
 
-- `docs/screenshot-table.png` — the player table with the sidebar
-- `docs/screenshot-profile.png` — a player profile with best roles
+![The player table with the sidebar](docs/screenshot-table.png)
+
+A player profile with its attribute groups, taken from an Aston
+Villa save.
+
+![A player profile](docs/screenshot-profile.png)
+
+The Best Role section with its explanation box and the best role
+for each phase.
+
+![The Best Role section](docs/screenshot-best-role.png)
+
+A role filter in action, the table sorted by the fit column it
+adds.
+
+![A role filter applied](docs/screenshot-role-filter.png)
+
+A goalkeeper profile, where the Goalkeeping group joins the other
+attribute groups.
+
+![A goalkeeper profile](docs/screenshot-goalkeeper.png)
+
+The complete list of all 79 roles for one player, opened from the
+expander under the top 5 tables.
+
+![The full role list](docs/screenshot-all-roles.png)
 
 ## Requirements
 
