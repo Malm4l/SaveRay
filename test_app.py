@@ -28,7 +28,7 @@ assert ";" not in expl and ":" not in expl, \
     "Explanation text must not use colons or semicolons"
 try:
     tbl = at.dataframe[0].value
-    col = tbl["natural_positions"].astype(str)
+    col = tbl["Positions"].astype(str)
     assert not col.str.contains(";").any(), \
         "The natural positions column must not use semicolons"
     print("POSITIONS_COMMA_OK sample:", col.iloc[0])
@@ -49,14 +49,14 @@ assert "Filter role Out of possession" in side_selects
 print("ROLE_FILTER_PHASE_OK")
 tbl0 = at.dataframe[0].value
 subs0 = [s.value for s in at.subheader]
-first_nat = str(tbl0["natural_positions"].iloc[0])
+first_nat = str(tbl0["Positions"].iloc[0])
 if "GK" not in first_nat:
     assert "Goalkeeping" not in subs0, subs0
     assert "Hidden" in subs0
-    gk_rows = tbl0[tbl0["natural_positions"].astype(str)
+    gk_rows = tbl0[tbl0["Positions"].astype(str)
                    .str.contains("GK", na=False)]
     assert len(gk_rows) > 0
-    gk_name = gk_rows["name"].iloc[0]
+    gk_name = gk_rows["Name"].iloc[0]
     pick_box = next(s for s in at.selectbox if s.label == "Select player")
     pick_box.set_value(gk_name).run()
     assert not at.exception
@@ -70,7 +70,8 @@ box = next(s for s in at.sidebar.selectbox
 box.set_value("Inside Forward").run()
 assert not at.exception
 tbl = at.dataframe[0].value
-assert "fit_in" in tbl.columns and (tbl["fit_in"] >= 60).all()
+fit_col = next(c for c in tbl.columns if "Inside Forward" in c)
+assert (tbl[fit_col] >= 60).all()
 print("ROLE_FILTER_WORKS_OK rows:", len(tbl))
 import re
 mds = [m.value for m in at.markdown]

@@ -118,6 +118,24 @@ def pretty(name: str) -> str:
     return name.replace("attributes_", "").replace("_", " ").title()
 
 
+def fmt_money(v) -> str:
+    """Raw in-game money value as compact currency, e.g. €187.61m."""
+    if v is None or (isinstance(v, float) and pd.isna(v)):
+        return "-"
+    v = float(v)
+    if abs(v) >= 1_000_000:
+        return f"€{v / 1_000_000:.2f}m"
+    if abs(v) >= 1_000:
+        return f"€{v / 1_000:.0f}k"
+    return f"€{v:.0f}"
+
+
+def fmt_height(v) -> str:
+    if v is None or (isinstance(v, float) and pd.isna(v)):
+        return "-"
+    return f"{int(v)} cm"
+
+
 @st.cache_resource
 def catalog():
     return load_catalog()
@@ -313,6 +331,21 @@ def main() -> None:
     if "natural_positions" in disp.columns:
         disp["natural_positions"] = disp["natural_positions"].str.replace(
             ";", ", ", regex=False)
+    if "transfer_value" in disp.columns:
+        disp["transfer_value"] = disp["transfer_value"].map(fmt_money)
+    if "contract_wage" in disp.columns:
+        disp["contract_wage"] = disp["contract_wage"].map(fmt_money)
+    if "height_cm" in disp.columns:
+        disp["height_cm"] = disp["height_cm"].map(fmt_height)
+    labels = {"name": "Name", "age": "Age", "club_name": "Club",
+              "natural_positions": "Positions",
+              "ability_current": "CA", "ability_potential": "PA",
+              "height_cm": "Height", "transfer_value": "Transfer Value",
+              "contract_wage": "Wage", "contract_end": "Contract Ends"}
+    for colname, role_obj in chosen:
+        labels[colname] = (f"{role_obj['name']} "
+                           f"({'IP' if colname == 'fit_in' else 'OOP'})")
+    disp = disp.rename(columns=labels)
     st.dataframe(disp, width="stretch", height=420, hide_index=True)
 
     # ---------- Player detail ----------
