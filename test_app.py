@@ -3,7 +3,8 @@ AppTest.
 
 Usage: python test_app.py   (in the same folder as app.py and data)
 Passes when the app renders without exceptions and every check below
-holds against the active snapshot.
+holds against the active snapshot. The app is bilingual, English by
+default with a sidebar toggle to Indonesian, checked at the end.
 """
 from streamlit.testing.v1 import AppTest
 
@@ -75,11 +76,17 @@ assert (tbl[fit_col] >= 60).all()
 print("ROLE_FILTER_WORKS_OK rows:", len(tbl))
 import re
 mds = [m.value for m in at.markdown]
-feet = [t for t in mds if "Feet **" in t]
-assert feet and re.search(r"Feet \*\*\d{1,2}/\d{1,2}\*\*", feet[0]), feet
+feet = [t for t in mds if "Feet:" in t]
+assert feet and re.search(r"Feet: \*\*\d{1,2}/\d{1,2}\*\*", feet[0]), feet
 caps = [c.value for c in at.caption]
-assert any("left foot" in c and "right foot" in c for c in caps), caps
-print("FEET_FORMAT_OK", feet[0].split("·")[-1].strip())
+assert not any("left foot" in c for c in caps), caps
+print("FEET_FORMAT_OK", feet[0].strip())
+heights = [t for t in mds if "Height:" in t]
+assert heights and re.search(r"Height: \*\*\d+ cm\*\*", heights[0]), heights
+print("HEIGHT_LINE_OK", heights[0].strip())
+_hrs = [m.value for m in at.markdown if "<hr" in (m.value or "")]
+assert _hrs, "a visible separator must split feet/height from Hidden"
+print("FEET_HEIGHT_SEPARATED_OK")
 def _cur(seq, label):
     return next(x for x in seq if x.label == label)
 
@@ -97,3 +104,39 @@ assert not at.exception
 assert _cur(at.sidebar.text_input, "Search player name").value == ""
 assert len(at.dataframe[0].value) == n_full
 print("RESET_FILTER_OK full rows:", n_full, "| filtered rows:", n_small)
+lang_box = _cur(at.sidebar.selectbox, "Language")
+lang_box.set_value("Indonesia").run()
+assert not at.exception
+side_buttons_id = [b.label for b in at.sidebar.button]
+assert "Reset semua filter" in side_buttons_id, side_buttons_id
+tbl_id = at.dataframe[0].value
+assert "Posisi" in tbl_id.columns and "Nama" in tbl_id.columns, \
+    list(tbl_id.columns)
+assert _cur(at.sidebar.selectbox, "Klub").value == "(semua)", \
+    "the club sentinel must follow the language"
+assert _cur(at.sidebar.selectbox,
+            "Filter atribut").value == "(tidak ada)", \
+    "the attribute sentinel must follow the language"
+mds_id = [m.value for m in at.markdown]
+kaki = [t for t in mds_id if "Kaki:" in t]
+assert kaki and re.search(r"Kaki: \*\*\d{1,2}/\d{1,2}\*\*", kaki[0]), kaki
+print("LANG_TOGGLE_OK", kaki[0].strip())
+tinggi = [t for t in mds_id if "Tinggi:" in t]
+assert tinggi and re.search(r"Tinggi: \*\*\d+ cm\*\*", tinggi[0]), tinggi
+print("HEIGHT_LINE_ID_OK", tinggi[0].strip())
+
+# --- auto-load: the active snapshot records its save file state ---
+import sqlite3
+from pathlib import Path as _P
+_active = _P("active_snapshot.txt").read_text(encoding="utf-8-sig").strip()
+_con = sqlite3.connect(_active)
+_m = dict(_con.execute("SELECT key, value FROM meta").fetchall())
+_con.close()
+assert "source_mtime" in _m and "source_size" in _m, sorted(_m)
+print("AUTO_SAVE_OK", _m.get("source_name"), _m.get("source_size"))
+
+# --- the two short sidebar notes (UI language is Indonesian here) ---
+_side_caps = [c.value for c in at.sidebar.caption]
+assert any("otomatis diperbarui" in c for c in _side_caps), _side_caps
+assert any("Snapshot adalah salinan" in c for c in _side_caps), _side_caps
+print("SAVE_NOTES_OK")
