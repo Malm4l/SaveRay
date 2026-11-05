@@ -29,6 +29,15 @@ Everything runs locally. Your save never leaves your machine.
   switch between snapshots without re-importing
 - One-click filter reset, plain-language explanations of every score
   inside the app
+- Dark theme by default, pinned in `.streamlit/config.toml`, so the
+  app looks the same on every machine
+- Bilingual interface, English by default with an Indonesian option
+  in the sidebar, because SaveRay is made in Indonesia
+- Watches the FM27 games folder and loads the newest save
+  automatically when its file changes, no manual re-import needed
+- Fast where it matters, imports read the save directly with no
+  intermediate export step, and the role filters score the whole
+  database in a fraction of a second
 
 ## Screenshots
 
@@ -85,7 +94,7 @@ a few players against the game itself.
    the app at http://localhost:8501.
 4. In the left sidebar, open the **Save** menu, pick your save from
    the FM27 games folder, and click **Import this save**. Importing
-   takes about 20 seconds per save.
+   takes about 10 seconds per save.
 
 Use the **SaveRay - Stop** shortcut to stop the local server. Starting
 SaveRay again later reopens the last snapshot you used.
@@ -130,6 +139,7 @@ the included `.gitignore` keeps them out of any git commit.
   a SQLite snapshot
 - `roles_engine.py` — the best role scoring engine
 - `roles_touchline.json` — the 79-role catalog as replaceable data
+- `.streamlit/config.toml` — pins the dark theme as the default
 - `install.ps1` and `Install SaveRay.bat` — the one-time installer
 - `start-saveray.ps1`, `stop-saveray.ps1`, `make-shortcuts.ps1` —
   desktop shortcut plumbing
