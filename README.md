@@ -19,7 +19,7 @@ Everything runs locally. Your save never leaves your machine.
   Physical, Goalkeeping (goalkeepers only) and Hidden, plus all eight
   personality attributes
 - Best role shown **separately for each phase**, with a top 5 per phase
-  and the complete list of all 79 FM27 roles, because a mixed top 3 can
+  and the complete list of all 78 FM27 roles, because a mixed top 3 can
   bury a player's best in-possession role completely
 - Two role filters in the sidebar, one per phase, usable together so
   you can search for players who fit one role when your team attacks
@@ -65,7 +65,7 @@ attribute groups.
 
 ![A goalkeeper profile](docs/screenshot-goalkeeper.png)
 
-The complete list of all 79 roles for one player, opened from the
+The complete list of all 78 roles for one player, opened from the
 expander under the top 5 tables.
 
 ![The full role list](docs/screenshot-all-roles.png)
@@ -105,7 +105,7 @@ folder and are never touched by the installer.
 
 ## How the best role score works
 
-Each of the 79 roles has a set of priority attributes and supporting
+Each of the 78 roles has a set of priority attributes and supporting
 attributes per phase. Two numbers are shown for every role.
 
 - **Fit** is pure attribute fit. It is the weighted average of the
@@ -138,7 +138,7 @@ the included `.gitignore` keeps them out of any git commit.
 - `import_save.py` — turns a .fm save (or an fmsave CSV export) into
   a SQLite snapshot
 - `roles_engine.py` — the best role scoring engine
-- `roles_touchline.json` — the 79-role catalog as replaceable data
+- `roles_touchline.json` — the 78-role catalog as replaceable data
 - `.streamlit/config.toml` — pins the dark theme as the default
 - `install.ps1` and `Install SaveRay.bat` — the one-time installer
 - `start-saveray.ps1`, `stop-saveray.ps1`, `make-shortcuts.ps1` —

@@ -146,7 +146,7 @@ STRINGS = {
                            "supporting \u00d71. Overall = Fit "
                            "\u00d7 (0.6 + 0.4 \u00d7 position "
                            "rating \u00f7 20).",
-        "expander_title": "All roles (79) \u2014 full list per phase",
+        "expander_title": "All roles (78) \u2014 full list per phase",
         "expander_caption": "A blank Overall means the role sits on "
                             "a position rated below 15, so it is not "
                             "scored.",
@@ -248,7 +248,7 @@ STRINGS = {
                            "\u00d73, supporting \u00d71). Overall "
                            "= Fit \u00d7 (0,6 + 0,4 \u00d7 rating "
                            "posisi \u00f7 20).",
-        "expander_title": "Semua role (79) \u2014 daftar lengkap "
+        "expander_title": "Semua role (78) \u2014 daftar lengkap "
                           "per fase",
         "expander_caption": "Overall yang kosong berarti role itu "
                             "menempel di posisi yang ratingnya di "
