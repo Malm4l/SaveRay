@@ -17,7 +17,9 @@ Everything runs locally. Your save never leaves your machine.
   position, age, CA and PA, any single attribute, and role fit
 - Player profiles with attributes grouped by Technical, Mental,
   Physical, Goalkeeping (goalkeepers only) and Hidden, plus all eight
-  personality attributes
+  personality attributes. Attribute values use the FM27 panel colours,
+  green for 15 to 20, orange for 11 to 14 and white below that, in the
+  Technical, Mental, Physical and Goalkeeping groups
 - Best role shown **separately for each phase**, with a top 5 per phase
   and the complete list of all 78 FM27 roles, because a mixed top 3 can
   bury a player's best in-possession role completely
