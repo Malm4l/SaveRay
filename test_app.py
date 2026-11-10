@@ -87,6 +87,22 @@ print("HEIGHT_LINE_OK", heights[0].strip())
 _hrs = [m.value for m in at.markdown if "<hr" in (m.value or "")]
 assert _hrs, "a visible separator must split feet/height from Hidden"
 print("FEET_HEIGHT_SEPARATED_OK")
+assert any("#35a567" in t for t in mds), "15-20 values must be green"
+assert any("#d9903d" in t for t in mds), "11-14 values must be orange"
+assert any("#ffffff" in t for t in mds), "1-10 values must be white"
+_hidden = [t for t in mds if "Consistency:" in t]
+assert _hidden and "<span" not in _hidden[0], _hidden
+_pers = [t for t in mds if "Adaptability:" in t]
+assert _pers and "<span" not in _pers[0], _pers
+print("ATTR_COLOR_OK")
+_sel = next(s for s in at.selectbox if s.label == "Select player")
+_anchor = _sel.options[5]
+_sel.set_value(_anchor).run()
+assert not at.exception
+_sel2 = next(s for s in at.selectbox if s.label == "Select player")
+assert _sel2.value == _anchor and _sel2.options[0] == _anchor, (
+    _sel2.value, _sel2.options[:2])
+print("PICKER_ANCHOR_OK", _anchor)
 def _cur(seq, label):
     return next(x for x in seq if x.label == label)
 

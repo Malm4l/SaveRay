@@ -354,6 +354,26 @@ def fmt_height(v) -> str:
     return f"{int(v)} cm"
 
 
+# Attribute value colours for the player profile, sampled from
+# the FM27 panel the user provided as the reference: values of
+# 15-20 are green, 11-14 orange and 1-10 plain white.
+ATTR_GREEN = "#35a567"
+ATTR_ORANGE = "#d9903d"
+ATTR_WHITE = "#ffffff"
+
+
+def attr_value_html(value: int) -> str:
+    """One attribute value as coloured HTML, FM27 style."""
+    if value >= 15:
+        color = ATTR_GREEN
+    elif value >= 11:
+        color = ATTR_ORANGE
+    else:
+        color = ATTR_WHITE
+    return (f'<span style="color:{color}">'
+            f"<strong>{value}</strong></span>")
+
+
 @st.cache_resource
 def catalog():
     return load_catalog()
@@ -688,7 +708,17 @@ def main() -> None:
         st.info(t["no_players"])
         return
     names = out["name"].tolist()
-    pick = st.selectbox(t["select_player"], names)
+    # The dropdown always opens at the top of its option list, so
+    # the list is rotated to start at the player picked last time.
+    # Reopening it then begins at that player, with the players
+    # below them in the ranking right after, instead of jumping
+    # back to the first player and forcing a long scroll down.
+    # The players above wrap around to the end of the list.
+    last_pick = st.session_state.get("player_pick")
+    if last_pick in names:
+        i = names.index(last_pick)
+        names = names[i:] + names[:i]
+    pick = st.selectbox(t["select_player"], names, key="player_pick")
     row = out[out["name"] == pick].iloc[0]
 
     c1, c2, c3, c4 = st.columns(4)
@@ -713,7 +743,15 @@ def main() -> None:
                 key = f"attributes_{a}"
                 if key in row and pd.notna(row[key]):
                     mark = " ⚠" if a in BAD_WHEN_HIGH else ""
-                    st.write(f"{pretty(a)}: **{int(row[key])}**{mark}")
+                    if group == "Hidden":
+                        # Hidden attributes stay plain white by
+                        # the user's choice, no FM colour scale.
+                        st.write(f"{pretty(a)}: **{int(row[key])}**{mark}")
+                    else:
+                        st.markdown(
+                            f"{pretty(a)}: "
+                            f"{attr_value_html(int(row[key]))}{mark}",
+                            unsafe_allow_html=True)
             if group == "Hidden":
                 st.markdown(
                     '<hr style="border:none;border-top:2px solid '
