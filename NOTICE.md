@@ -21,6 +21,15 @@ The catalog ships as a plain data file on purpose. Anyone may replace it
 with a different catalog, for example the official in-game attribute
 highlights, without changing the scoring engine in `roles_engine.py`.
 
+## Nation names
+
+A save file stores no nation names, only each nation's id in the game's
+database. The names in `nations.json` follow the nation table published
+with **FMSuperScout** (https://github.com/mavarobli/FMSuperScout), which
+was generated from a Football Manager database dump and is keyed on that
+same database id. Nations the table does not cover are shown with a
+plain "Nation <id>" label rather than a guessed name.
+
 ## Game data
 
 Football Manager is a trademark of Sports Interactive. SaveRay is an
