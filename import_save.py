@@ -142,6 +142,51 @@ def _column_is_numeric(values) -> bool:
     return seen
 
 
+def _nation_names(save) -> dict:
+    """Save-local nation id -> the name the game shows for it.
+
+    A save stores no nation names at all. It pairs each save-local
+    nation id with the nation's id in the game's database, and the
+    bundled nations.json maps that database id to a name. Nations
+    missing from the map fall back to a plain "Nation <id>" label,
+    never to a guessed name.
+    """
+    try:
+        name_map = json.loads(
+            (HERE / "nations.json").read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    out = {}
+    try:
+        for n in save.nations():
+            out[n.nation_id] = (name_map.get(str(n.database_id))
+                                or f"Nation {n.database_id}")
+    except Exception:
+        return {}
+    return out
+
+
+def _club_genders(save) -> dict:
+    """Club uid -> "men" or "women", from the club's stored code.
+
+    Players carry no gender of their own in a save. Their club
+    does, so a player's gender is resolved through the club he
+    belongs to. Clubs whose code is missing or unknown resolve
+    to nothing.
+    """
+    out = {}
+    try:
+        for c in save.clubs():
+            if c.gender is not None:
+                if c.gender.raw == 0:
+                    out[c.uid] = "men"
+                elif c.gender.raw == 1:
+                    out[c.uid] = "women"
+    except Exception:
+        return {}
+    return out
+
+
 def save_to_sqlite_api(save_path: Path, db_path: Path, source_label: str,
                        extra_meta: dict | None = None) -> int:
     """Read the save through the fmsave API, skipping the CSV detour."""
@@ -151,6 +196,8 @@ def save_to_sqlite_api(save_path: Path, db_path: Path, source_label: str,
 
     with fmsave.open(save_path) as save:
         columns = _export.to_columns(save.players(), Player)
+        nation_names = _nation_names(save)
+        club_genders = _club_genders(save)
     names = list(columns.keys())
     if not names:
         raise SystemExit("No player columns - read failed?")
@@ -159,6 +206,51 @@ def save_to_sqlite_api(save_path: Path, db_path: Path, source_label: str,
     final = [columns[c] if numeric[i] else [_csv_cell(v) for v in columns[c]]
              for i, c in enumerate(names)]
     rows = list(zip(*final))
+
+    if nation_names and "nation_id" in names:
+        # Two resolved text columns, so the app can offer a nation
+        # filter without knowing anything about nation ids. The
+        # second column holds every other nation the player is
+        # eligible for, semicolon-joined like the raw column.
+        ni = names.index("nation_id")
+        si = (names.index("second_nation_ids")
+              if "second_nation_ids" in names else None)
+        extra_rows = []
+        for r in rows:
+            primary = ""
+            if r[ni] is not None and r[ni] != "":
+                primary = nation_names.get(int(r[ni]), "")
+            seconds = ""
+            if si is not None and r[si]:
+                seconds = ";".join(
+                    nation_names.get(int(x), "")
+                    for x in str(r[si]).split(";") if x != "")
+            extra_rows.append((primary, seconds))
+        names += ["nation_name", "second_nation_names"]
+        numeric += [False, False]
+        rows = [r + e for r, e in zip(rows, extra_rows)]
+
+    if club_genders:
+        # One resolved text column, "men", "women" or "" when no
+        # club reference resolves. Free agents keep "", because a
+        # save holds nothing that says which database they came
+        # from, and the app keeps them out of both gender views.
+        uid_cols = [names.index(c) for c in
+                    ("club_uid", "contract_club_uid", "team_club_uid",
+                     "loan_parent_club_uid") if c in names]
+        grown = []
+        for r in rows:
+            g = ""
+            for ci in uid_cols:
+                v = r[ci]
+                if v is not None and v != "":
+                    g = club_genders.get(int(v), "")
+                    if g:
+                        break
+            grown.append((g,))
+        names += ["gender"]
+        numeric += [False]
+        rows = [r + e for r, e in zip(rows, grown)]
 
     if db_path.exists():
         db_path.unlink()

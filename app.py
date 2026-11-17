@@ -71,6 +71,11 @@ STRINGS = {
         "saved_snapshots": "Saved snapshots",
         "imported_word": "imported",
         "use_snapshot": "Use this snapshot",
+        "delete_snapshot": "Delete this snapshot",
+        "delete_confirm": "Delete the snapshot {name} for good? "
+                          "The save file itself stays untouched",
+        "delete_yes": "Yes, delete it",
+        "delete_no": "Cancel",
         "tagline": "X-ray your FM27 save. Every player, every "
                    "attribute, including the hidden ones.",
         "no_snapshot": "No snapshot yet. Import one of your saves "
@@ -83,6 +88,13 @@ STRINGS = {
         "all_word": "(all)",
         "none_word": "(none)",
         "club": "Club",
+        "nation": "Nation",
+        "gender": "Gender",
+        "men_word": "Men",
+        "women_word": "Women",
+        "gender_note": "Players without a club only appear under "
+                       "All, because their gender is not stored "
+                       "in the save",
         "pos_contains": "Natural position contains",
         "age": "Age",
         "min_ca": "Minimum CA",
@@ -146,7 +158,7 @@ STRINGS = {
                            "supporting \u00d71. Overall = Fit "
                            "\u00d7 (0.6 + 0.4 \u00d7 position "
                            "rating \u00f7 20).",
-        "expander_title": "All roles (78) \u2014 full list per phase",
+        "expander_title": "All roles (79) \u2014 full list per phase",
         "expander_caption": "A blank Overall means the role sits on "
                             "a position rated below 15, so it is not "
                             "scored.",
@@ -172,6 +184,11 @@ STRINGS = {
         "saved_snapshots": "Snapshot tersimpan",
         "imported_word": "diimpor",
         "use_snapshot": "Pakai snapshot ini",
+        "delete_snapshot": "Hapus snapshot ini",
+        "delete_confirm": "Hapus snapshot {name} selamanya? "
+                          "File save-nya sendiri tidak ikut terhapus",
+        "delete_yes": "Ya, hapus",
+        "delete_no": "Batal",
         "tagline": "X-ray save FM27 kamu. Semua pemain, semua "
                    "atribut, termasuk yang hidden.",
         "no_snapshot": "Belum ada snapshot. Impor dulu salah satu "
@@ -185,6 +202,13 @@ STRINGS = {
         "all_word": "(semua)",
         "none_word": "(tidak ada)",
         "club": "Klub",
+        "nation": "Negara",
+        "gender": "Gender",
+        "men_word": "Pria",
+        "women_word": "Wanita",
+        "gender_note": "Pemain tanpa klub hanya muncul di pilihan "
+                       "Semua, karena gendernya tidak tersimpan "
+                       "di dalam save",
         "pos_contains": "Posisi natural mengandung",
         "age": "Umur",
         "min_ca": "CA minimum",
@@ -248,7 +272,7 @@ STRINGS = {
                            "\u00d73, supporting \u00d71). Overall "
                            "= Fit \u00d7 (0,6 + 0,4 \u00d7 rating "
                            "posisi \u00f7 20).",
-        "expander_title": "Semua role (78) \u2014 daftar lengkap "
+        "expander_title": "Semua role (79) \u2014 daftar lengkap "
                           "per fase",
         "expander_caption": "Overall yang kosong berarti role itu "
                             "menempel di posisi yang ratingnya di "
@@ -354,6 +378,19 @@ def fmt_height(v) -> str:
     return f"{int(v)} cm"
 
 
+def fmt_date(v) -> str:
+    """An ISO date from the save, 2027-06-30, shown day first as
+    30-06-2027. Anything that is not a full ISO date passes
+    through untouched."""
+    if not isinstance(v, str):
+        return v
+    parts = v.split("-")
+    if (len(parts) == 3 and len(parts[0]) == 4
+            and all(p.isdigit() for p in parts)):
+        return f"{parts[2]}-{parts[1]}-{parts[0]}"
+    return v
+
+
 # Attribute value colours for the player profile, sampled from
 # the FM27 panel the user provided as the reference: values of
 # 15-20 are green, 11-14 orange and 1-10 plain white.
@@ -432,6 +469,8 @@ def reset_filters() -> None:
     """Return every sidebar filter widget to its default value."""
     st.session_state["f_q"] = ""
     st.session_state["f_club"] = T()["all_word"]
+    st.session_state["f_nation"] = T()["all_word"]
+    st.session_state["f_gender"] = T()["men_word"]
     st.session_state["f_pos"] = T()["all_word"]
     bounds = st.session_state.get("_age_bounds")
     if bounds:
@@ -557,6 +596,37 @@ def sidebar_save_section(active) -> None:
             set_active(chosen_path)
             st.cache_data.clear()
             st.rerun()
+        # Deleting is two steps on purpose, one click arms the
+        # confirmation and only the second button removes the
+        # file. The save file itself is never touched, only the
+        # snapshot copy inside SaveRay.
+        pending = st.session_state.get("_confirm_delete")
+        snap_paths = [p for p, _ in snaps]
+        if pending and Path(pending) in snap_paths:
+            plabel = next(lbl for p, lbl in snaps
+                          if p == Path(pending))
+            st.sidebar.warning(
+                T()["delete_confirm"].format(name=plabel))
+            if st.sidebar.button(T()["delete_yes"], key="del_yes"):
+                victim = Path(pending)
+                victim.unlink(missing_ok=True)
+                if victim == active:
+                    rest = [p for p in snap_paths if p != victim]
+                    if rest:
+                        set_active(rest[0])
+                    else:
+                        ACTIVE_FILE.unlink(missing_ok=True)
+                st.session_state.pop("_confirm_delete", None)
+                st.cache_data.clear()
+                st.rerun()
+            if st.sidebar.button(T()["delete_no"], key="del_no"):
+                st.session_state.pop("_confirm_delete", None)
+                st.rerun()
+        else:
+            st.session_state.pop("_confirm_delete", None)
+            if st.sidebar.button(T()["delete_snapshot"], key="del_btn"):
+                st.session_state["_confirm_delete"] = str(chosen_path)
+                st.rerun()
         st.sidebar.caption(T()["snapshot_note"])
     st.sidebar.divider()
 
@@ -567,12 +637,19 @@ def main() -> None:
                          key="ui_lang")
     t = T()
     allw, nonew = t["all_word"], t["none_word"]
-    for _k in ("f_club", "f_pos"):
+    for _k in ("f_club", "f_nation", "f_pos"):
         if st.session_state.get(_k) in ("(all)", "(semua)"):
             st.session_state[_k] = allw
     for _k in ("f_attr", "f_role_in", "f_role_out"):
         if st.session_state.get(_k) in ("(none)", "(tidak ada)"):
             st.session_state[_k] = nonew
+    _g = st.session_state.get("f_gender")
+    if _g in ("Men", "Pria"):
+        st.session_state["f_gender"] = t["men_word"]
+    elif _g in ("Women", "Wanita"):
+        st.session_state["f_gender"] = t["women_word"]
+    elif _g in ("(all)", "(semua)"):
+        st.session_state["f_gender"] = allw
     st.caption(t["tagline"])
     ensure_snapshots()
     active = get_active_db()
@@ -599,6 +676,31 @@ def main() -> None:
     q = st.sidebar.text_input(t["search_name"], key="f_q")
     clubs = sorted(x for x in df["club_name"].dropna().unique() if x)
     club = st.sidebar.selectbox(t["club"], [allw] + clubs, key="f_club")
+    nation = allw
+    if "nation_name" in df.columns:
+        # Snapshots imported before this feature (or through the
+        # CSV fallback) have no resolved nation names, so the
+        # filter only appears when the data carries them. A player
+        # matches through his main nation or any other nation he
+        # is eligible for.
+        nations = {x for x in df["nation_name"].dropna() if x}
+        if "second_nation_names" in df.columns:
+            nations |= {n for cell in df["second_nation_names"].dropna()
+                        for n in str(cell).split(";") if n}
+        nation = st.sidebar.selectbox(t["nation"],
+                                      [allw] + sorted(nations),
+                                      key="f_nation")
+    gender_pick = None
+    if "gender" in df.columns:
+        # Snapshots imported before this feature have no resolved
+        # gender column, so the filter only appears when the data
+        # carries it. Men is the default view, because the womens
+        # database sits in every save even when no womens league
+        # is active.
+        gender_pick = st.sidebar.selectbox(
+            t["gender"], [t["men_word"], t["women_word"], allw],
+            key="f_gender")
+        st.sidebar.caption(t["gender_note"])
     pos_opts = ["GK", "DL", "DC", "DR", "WBL", "WBR", "DM", "ML", "MC", "MR",
                 "AML", "AMC", "AMR", "STC"]
     pos = st.sidebar.selectbox(t["pos_contains"], [allw] + pos_opts,
@@ -636,6 +738,14 @@ def main() -> None:
         out = out[out["name"].str.contains(q, case=False, na=False)]
     if club != allw:
         out = out[out["club_name"] == club]
+    if nation != allw:
+        out = out[(out["nation_name"] == nation)
+                  | out["second_nation_names"].fillna("").str.split(";")
+                  .apply(lambda parts: nation in parts)]
+    if gender_pick == t["men_word"]:
+        out = out[out["gender"] == "men"]
+    elif gender_pick == t["women_word"]:
+        out = out[out["gender"] == "women"]
     if pos != allw:
         out = out[out["natural_positions"].str.contains(pos, na=False)]
     out = out[(out["age"] >= age[0]) & (out["age"] <= age[1])]
@@ -688,6 +798,8 @@ def main() -> None:
         disp["contract_wage"] = disp["contract_wage"].map(fmt_money)
     if "height_cm" in disp.columns:
         disp["height_cm"] = disp["height_cm"].map(fmt_height)
+    if "contract_end" in disp.columns:
+        disp["contract_end"] = disp["contract_end"].map(fmt_date)
     labels = {"name": t["col_name"], "age": t["age"],
               "club_name": t["club"],
               "natural_positions": t["col_positions"],

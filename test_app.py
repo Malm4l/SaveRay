@@ -120,6 +120,95 @@ assert not at.exception
 assert _cur(at.sidebar.text_input, "Search player name").value == ""
 assert len(at.dataframe[0].value) == n_full
 print("RESET_FILTER_OK full rows:", n_full, "| filtered rows:", n_small)
+_nat = _cur(at.sidebar.selectbox, "Nation")
+assert "England" in _nat.options and "Indonesia" in _nat.options
+_nat.set_value("England").run()
+assert not at.exception
+n_nat = len(at.dataframe[0].value)
+assert 0 < n_nat < n_full, (n_nat, n_full)
+_pick_opts = next(s for s in at.selectbox
+                  if s.label == "Select player").options
+assert "Ollie Watkins" in _pick_opts, "an English player must stay"
+assert "Emiliano Martínez" not in _pick_opts, \
+    "a non-English player must be filtered out"
+_cur(at.sidebar.button, "Reset all filters").click().run()
+assert not at.exception
+assert _cur(at.sidebar.selectbox, "Nation").value == "(all)"
+assert len(at.dataframe[0].value) == n_full
+print("NATION_FILTER_OK rows:", n_nat)
+import sqlite3 as _sq3
+from pathlib import Path as _P3
+_ap3 = _P3("active_snapshot.txt").read_text(encoding="utf-8-sig").strip()
+_gc3 = _sq3.connect(_ap3)
+_gcounts = dict(_gc3.execute(
+    "SELECT gender, COUNT(*) FROM players GROUP BY gender").fetchall())
+_gc3.close()
+_men = _gcounts.get("men", 0)
+_women = _gcounts.get("women", 0)
+assert n_full == _men, (n_full, _men)
+_g = _cur(at.sidebar.selectbox, "Gender")
+assert _g.value == "Men", _g.value
+_g.set_value("Women").run()
+assert not at.exception
+assert len(at.dataframe[0].value) == _women, (
+    len(at.dataframe[0].value), _women)
+if _women:
+    _wopts = next(s for s in at.selectbox
+                  if s.label == "Select player").options
+    assert "Aitana Bonmatí" in _wopts, "a women player must show"
+    assert "Kylian Mbappé" not in _wopts, "a men player must hide"
+# Re-fetch: an empty result run drops the profile picker from
+# the tree, and AppTest cannot carry a stale element across it.
+_g = _cur(at.sidebar.selectbox, "Gender")
+_g.set_value("(all)").run()
+assert not at.exception
+assert len(at.dataframe[0].value) == sum(_gcounts.values())
+_cur(at.sidebar.button, "Reset all filters").click().run()
+assert not at.exception
+assert _cur(at.sidebar.selectbox, "Gender").value == "Men"
+assert len(at.dataframe[0].value) == _men
+print("GENDER_FILTER_OK men:", _men, "women:", _women)
+import re as _re2
+_tab2 = at.dataframe[0].value
+_dc2 = _sq3.connect(_ap3)
+_checked2 = 0
+for _, _r2 in _tab2.head(10).iterrows():
+    _cell2 = str(_r2["Contract Ends"])
+    if not _cell2 or _cell2 == "nan":
+        continue
+    assert _re2.fullmatch(r"\d{2}-\d{2}-\d{4}", _cell2), _cell2
+    _iso2 = _dc2.execute("SELECT contract_end FROM players "
+                         "WHERE name = ?",
+                         (str(_r2["Name"]),)).fetchone()[0]
+    _y2, _m2, _d2 = _iso2.split("-")
+    assert _cell2 == f"{_d2}-{_m2}-{_y2}", (_cell2, _iso2)
+    _checked2 += 1
+    break
+_dc2.close()
+assert _checked2 == 1
+print("DATE_FORMAT_OK", _cell2)
+import shutil as _sh2
+_victim = _P3("snapshots") / "zz-delete-me.db"
+_sh2.copy(_ap3, _victim)
+_vc = _sq3.connect(_victim)
+_vc.execute("UPDATE meta SET value = 'ZZ Delete Me.fm' "
+            "WHERE key = 'source'")
+_vc.commit()
+_vc.close()
+at.run()
+assert not at.exception
+_picker = _cur(at.sidebar.selectbox, "Saved snapshots")
+_vopt = next(o for o in _picker.options if "ZZ Delete Me" in o)
+_picker.set_value(_vopt).run()
+assert not at.exception
+_cur(at.sidebar.button, "Delete this snapshot").click().run()
+assert not at.exception
+assert _victim.exists(), "nothing may be deleted before confirming"
+_cur(at.sidebar.button, "Yes, delete it").click().run()
+assert not at.exception
+assert not _victim.exists(), "the snapshot file must be gone"
+assert _P3(_ap3).exists(), "the active snapshot must survive"
+print("DELETE_SNAPSHOT_OK")
 lang_box = _cur(at.sidebar.selectbox, "Language")
 lang_box.set_value("Indonesia").run()
 assert not at.exception
@@ -140,6 +229,12 @@ print("LANG_TOGGLE_OK", kaki[0].strip())
 tinggi = [t for t in mds_id if "Tinggi:" in t]
 assert tinggi and re.search(r"Tinggi: \*\*\d+ cm\*\*", tinggi[0]), tinggi
 print("HEIGHT_LINE_ID_OK", tinggi[0].strip())
+_neg = _cur(at.sidebar.selectbox, "Negara")
+assert _neg.value == "(semua)" and "Indonesia" in _neg.options, (
+    _neg.value, len(_neg.options))
+print("NATION_FILTER_ID_OK")
+assert _cur(at.sidebar.selectbox, "Gender").value == "Pria"
+print("GENDER_FILTER_ID_OK")
 
 # --- auto-load: the active snapshot records its save file state ---
 import sqlite3

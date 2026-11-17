@@ -745,10 +745,27 @@
       ]
     },
     {
+      "name": "Deep-Lying Playmaker",
+      "phase": "in",
+      "position_groups": [
+        "Defensive midfield"
+      ],
+      "priority": [
+        "Passing",
+        "Vision",
+        "First Touch",
+        "Decisions"
+      ],
+      "supporting": [
+        "Technique",
+        "Composure",
+        "Teamwork"
+      ]
+    },
+    {
       "name": "Midfield Playmaker",
       "phase": "in",
       "position_groups": [
-        "Defensive midfield",
         "Central midfield"
       ],
       "priority": [
